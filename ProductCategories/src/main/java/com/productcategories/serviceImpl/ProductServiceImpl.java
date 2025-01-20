@@ -1,6 +1,7 @@
 package com.productcategories.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,6 @@ public class ProductServiceImpl implements ProductServiceI {
 		pd.setProductId(product.getId());
 		pd.setProductName(product.getName());
 		pd.setProductDescription(product.getDescription());
-		Category category=new Category();
-		category.setCategoryId(product.getId());
-		pd.setCategory(category);
 		
 		pr.save(pd);
 		
