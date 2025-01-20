@@ -19,7 +19,7 @@ public class Product {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "categoryId")
-	private Category category;
+	private Integer category;
 	
 	public Integer getProductId() {
 		return productId;
@@ -46,11 +46,11 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
-	public Category getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 

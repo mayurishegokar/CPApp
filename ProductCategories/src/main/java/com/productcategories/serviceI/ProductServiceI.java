@@ -14,7 +14,7 @@ public interface ProductServiceI {
 
 	public List<Product> getAllProduct();
 
-	public void createProduct(ProductRequest product) throws ProductException;
+	public void createProduct(Product product) throws ProductException;
 
 	public Product getProductId(Integer id);
 

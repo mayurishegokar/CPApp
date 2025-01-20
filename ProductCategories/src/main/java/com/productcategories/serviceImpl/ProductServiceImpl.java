@@ -31,22 +31,15 @@ public class ProductServiceImpl implements ProductServiceI {
 	}
 
 	@Override
-	public void createProduct(ProductRequest product) throws ProductException {
-		Product pd=new Product();
-		
-		pd.setProductId(product.getId());
-		pd.setProductName(product.getName());
-		pd.setProductDescription(product.getDescription());
+	public void createProduct(Product product) throws ProductException {
 		
 		Optional<Category> op=cr.findById(product.getCategory());
 		
-		if(op.isPresent())
+		if(!op.isPresent())
 		{
-	       pd.setCategory(op.get());
-		}else {
-			throw new ProductException("Category Id not Present "+product.getCategory());
+	      throw new ProductException("Category Id does not match. ");
 		}
-		pr.save(pd);
+		pr.save(product);
 		
 	}
 
@@ -64,18 +57,14 @@ public class ProductServiceImpl implements ProductServiceI {
 	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException {
 	     Product p=pr.findById(id).orElseThrow(()->new ProductException("Product Id does not match."));
 	     
+	     Optional<Category> op=cr.findById(product.getCategory());
+	     if(!op.isPresent())
+	     {
+	    	 throw new CategoryException("Category Id does not match");
+	     }
 	     p.setProductName(product.getProductName());
 	     p.setProductDescription(product.getProductDescription());
-	     
-	     Optional<Category> op=cr.findById(product.getCategory().getCategoryId());
-	     if(op.isPresent())
-	     {
-	    	 p.setCategory(op.get());
-	     }
-	     else {
-			throw new CategoryException("Category Id does not match");
-		}
-	     
+	     p.setCategory(product.getCategory());
 	     pr.save(p);
 	}
 

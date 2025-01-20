@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.productcategories.serviceI.ProductServiceI;
+import com.productcategories.exception.CategoryException;
 import com.productcategories.exception.ProductException;
 import com.productcategories.model.Product;
 import com.productcategories.request.CategoryRequest;
@@ -21,51 +22,40 @@ import com.productcategories.request.ProductRequest;
 
 @RestController
 @RequestMapping("/api/product")
-public class ProductController {
+public class ProductController  {
 
 	@Autowired
 	ProductServiceI psi;
 	
-	@GetMapping("/getAllProduct")
+	@GetMapping("/")
 	public List<Product> getAllProduct()
 	{
 		return psi.getAllProduct();
 	}
 	
-	@PostMapping("/createProduct")
-	public String createProduct(@RequestBody ProductRequest product)
+	@PostMapping("/")
+	public String createProduct(@RequestBody Product product) throws ProductException
 	{
-		try
-		{
+		
 			psi.createProduct(product);
 			return "Create Category Successfully";
-		}
-		catch (ProductException p) {
 			
-		    return p.getMessage();
-		}	
 	}
-	@GetMapping("/getProductId/{id}")
+	@GetMapping("/{id}")
 	public Product getProductId(@PathVariable("id") Integer id)
 	{
 		return psi.getProductId(id);
 	}
 	
-	@PutMapping("/updateProduct/{id}")
-	public String updateProduct(@PathVariable("id") Integer id,@RequestBody Product product)
+	@PutMapping("/{id}")
+	public String updateProduct(@PathVariable("id") Integer id,@RequestBody Product product) throws ProductException, CategoryException
 	{
-		try
-		{
 			psi.updateProduct(id,product);
 			return "Update Successfully!....";
-		}
-		catch(Exception p) {
-			return p.getMessage();
-		}
 		
 	}
 	
-	@DeleteMapping("/deleteProcut/{id}")
+	@DeleteMapping("/{id}")
 	public String deleteProductId(@PathVariable("id") Integer id)
 	{
 		psi.deleteProductId(id);
