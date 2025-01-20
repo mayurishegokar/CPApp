@@ -38,13 +38,13 @@ public class ProductServiceImpl implements ProductServiceI {
 		pd.setProductName(product.getName());
 		pd.setProductDescription(product.getDescription());
 		
-		Optional<Category> op=cr.findById(product.getCategory().getCategoryId());
+		Optional<Category> op=cr.findById(product.getCategory());
 		
 		if(op.isPresent())
 		{
 	       pd.setCategory(op.get());
 		}else {
-			throw new ProductException("Category Id not Present "+product.getCategory().getCategoryId());
+			throw new ProductException("Category Id not Present "+product.getCategory());
 		}
 		pr.save(pd);
 		

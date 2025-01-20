@@ -7,7 +7,9 @@ public class ProductRequest {
 	private Integer id;
 	private String name;
 	private String description;
-	private Category category;
+	
+	private Integer category;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -26,10 +28,10 @@ public class ProductRequest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Category getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(Category category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 	

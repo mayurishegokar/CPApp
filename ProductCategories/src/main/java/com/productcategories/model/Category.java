@@ -22,6 +22,12 @@ public class Category {
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<Product> product=new ArrayList<>();
 	
+	
+	public Category()
+	{
+		
+	}
+	
 	public Integer getCategoryId() {
 		return categoryId;
 	}
