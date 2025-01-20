@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.productcategories.serviceI.ProductServiceI;
-
+import com.productcategories.exception.ProductException;
 import com.productcategories.model.Product;
 import com.productcategories.request.CategoryRequest;
 import com.productcategories.request.ProductRequest;
@@ -32,8 +32,17 @@ public class ProductController {
 	@PostMapping("/createProduct")
 	public String createProduct(@RequestBody ProductRequest product)
 	{
-		psi.createProduct(product);
-		return "Create Category Successfully";
+		try
+		{
+			psi.createProduct(product);
+			return "Create Category Successfully";
+		}
+		catch (ProductException p) {
+			
+		    return p.getMessage();
+		}
+		
+		
 	}
 	
 }

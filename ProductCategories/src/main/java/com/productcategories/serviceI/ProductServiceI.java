@@ -3,6 +3,8 @@ package com.productcategories.serviceI;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.productcategories.exception.ProductException;
 import com.productcategories.model.Product;
 import com.productcategories.request.ProductRequest;
 
@@ -11,7 +13,7 @@ public interface ProductServiceI {
 
 	public List<Product> getAllProduct();
 
-	public void createProduct(ProductRequest product);
+	public void createProduct(ProductRequest product) throws ProductException;
 	
 
 }
