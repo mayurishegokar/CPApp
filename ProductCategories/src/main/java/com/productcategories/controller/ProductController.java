@@ -41,7 +41,7 @@ public class ProductController  {
 			
 	}
 	@GetMapping("/getProductId/{id}")
-	public Product getProductId(@PathVariable("id") Integer id,@RequestBody Product product) throws CategoryException
+	public Product getProductId(@PathVariable("id") Integer id,@RequestBody Product product) 
 	{
 		return psi.getProductId(id,product);
 	}

@@ -17,7 +17,7 @@ public interface ProductServiceI {
 
 	public void createProduct(Product product) throws ProductException;
 
-	public Product getProductId(Integer id, Product product) throws CategoryException;	
+	public Product getProductId(Integer id, Product product);	
 
 	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException;
 
