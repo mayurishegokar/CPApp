@@ -45,9 +45,9 @@ public class ProductServiceImpl implements ProductServiceI {
 	}
 
 	@Override
-	public Product getProductId(Integer id)  {
+	public Product getProductId(Integer id,Product product)  {
 		Optional<Product> op=pr.findById(id);
-		if(op.isPresent())
+		if(!op.isPresent())
 		{
 			return op.get();
 		}

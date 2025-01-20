@@ -17,11 +17,13 @@ public interface ProductServiceI {
 
 	public void createProduct(Product product) throws ProductException;
 
-	public Product getProductId(Integer id);
+	public Product getProductId(Integer id, Product product) throws CategoryException;	
 
 	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException;
 
 	public void deleteProductId(Integer id) throws ProductException;
+
+	
 	
 
 }
