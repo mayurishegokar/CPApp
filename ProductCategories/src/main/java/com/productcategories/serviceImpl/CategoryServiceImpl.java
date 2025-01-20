@@ -37,15 +37,16 @@ public class CategoryServiceImpl implements CategoryServiceI {
 
 
 	@Override
-	public Category getCategoryId(Integer id) {
+	public Category getCategoryId(Integer id){
 		
 		Optional<Category> op=cr.findById(id);
 		if(op.isPresent())
 		{
-			Category c=op.get();
-			return c;
+			return op.get();
 		}
-		return null;	
+		return null;
+		
+		
 	}
 
 

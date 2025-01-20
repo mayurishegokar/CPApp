@@ -50,4 +50,39 @@ public class ProductServiceImpl implements ProductServiceI {
 		
 	}
 
+	@Override
+	public Product getProductId(Integer id)  {
+		Optional<Product> op=pr.findById(id);
+		if(op.isPresent())
+		{
+			return op.get();
+		}
+		return null;
+	}
+
+	@Override
+	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException {
+	     Product p=pr.findById(id).orElseThrow(()->new ProductException("Product Id does not match."));
+	     
+	     p.setProductName(product.getProductName());
+	     p.setProductDescription(product.getProductDescription());
+	     
+	     Optional<Category> op=cr.findById(product.getCategory().getCategoryId());
+	     if(op.isPresent())
+	     {
+	    	 p.setCategory(op.get());
+	     }
+	     else {
+			throw new CategoryException("Category Id does not match");
+		}
+	     
+	     pr.save(p);
+	}
+
+	@Override
+	public void deleteProductId(Integer id) {
+		cr.deleteById(id);
+		
+	}
+
 }
