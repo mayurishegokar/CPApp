@@ -55,7 +55,7 @@ public class ProductController  {
 	}
 	
 	@DeleteMapping("/deleteProductId/{id}")
-	public String deleteProductId(@PathVariable("id") Integer id)
+	public String deleteProductId(@PathVariable("id") Integer id) throws ProductException
 	{
 		psi.deleteProductId(id);
 		return "Delete Product Successfully.";

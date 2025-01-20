@@ -70,8 +70,19 @@ public class ProductServiceImpl implements ProductServiceI {
 	}
 
 	@Override
-	public void deleteProductId(Integer id) {
-		cr.deleteById(id);
+	public void deleteProductId(Integer id) throws ProductException {
+		Optional<Product> op=pr.findById(id);
+		
+		if(op.isPresent())
+		{
+			Product p=op.get();
+			pr.deleteById(id);
+		}
+		else
+		{
+			 throw new ProductException("Category Id does not match. ");
+		}
+		
 		
 	}
 	

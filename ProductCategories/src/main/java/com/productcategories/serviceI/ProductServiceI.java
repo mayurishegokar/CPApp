@@ -21,7 +21,7 @@ public interface ProductServiceI {
 
 	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException;
 
-	public void deleteProductId(Integer id);
+	public void deleteProductId(Integer id) throws ProductException;
 	
 
 }
