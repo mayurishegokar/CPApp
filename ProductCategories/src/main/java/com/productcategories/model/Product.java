@@ -1,12 +1,13 @@
 package com.productcategories.model;
 
 import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
+
 
 @Entity
 public class Product {
@@ -17,9 +18,8 @@ public class Product {
 	private String productName;
 	private String productDescription;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "categoryId")
-	private Integer category;
+	
+	private Category category;
 	
 	public Integer getProductId() {
 		return productId;
@@ -46,14 +46,13 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
-	public Integer getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(Integer category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
-
-	 
+ 
 
 }

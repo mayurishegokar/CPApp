@@ -1,6 +1,7 @@
 package com.productcategories.serviceImpl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.productcategories.exception.CategoryException;
 import com.productcategories.model.Category;
 import com.productcategories.repository.CategoryRepository;
-import com.productcategories.request.CategoryRequest;
+
 import com.productcategories.serviceI.CategoryServiceI;
 
 @Service
@@ -26,12 +27,8 @@ public class CategoryServiceImpl implements CategoryServiceI {
 
 
 	@Override
-	public void createCategory(CategoryRequest category) {
-		Category c=new Category();
-		c.setCategoryId(category.getId());
-		c.setCategoryName(category.getName());
-		c.setCategoryDescription(category.getDescription());
-		cr.save(c);
+	public void createCategory(Category category) {
+		cr.save(category);
 		
 	}
 
@@ -56,6 +53,7 @@ public class CategoryServiceImpl implements CategoryServiceI {
 		
 		c.setCategoryName(category.getCategoryName());
 		c.setCategoryDescription(category.getCategoryDescription());
+		
 		cr.save(c);
 		
 		

@@ -2,6 +2,7 @@ package com.productcategories.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,6 @@ import com.productcategories.serviceI.ProductServiceI;
 import com.productcategories.exception.CategoryException;
 import com.productcategories.exception.ProductException;
 import com.productcategories.model.Product;
-import com.productcategories.request.CategoryRequest;
-import com.productcategories.request.ProductRequest;
 
 
 @RestController
@@ -27,13 +26,13 @@ public class ProductController  {
 	@Autowired
 	ProductServiceI psi;
 	
-	@GetMapping("/")
+	@GetMapping("/getAllProduct")
 	public List<Product> getAllProduct()
 	{
 		return psi.getAllProduct();
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/createProduct")
 	public String createProduct(@RequestBody Product product) throws ProductException
 	{
 		
@@ -41,13 +40,13 @@ public class ProductController  {
 			return "Create Category Successfully";
 			
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/getProductId/{id}")
 	public Product getProductId(@PathVariable("id") Integer id)
 	{
 		return psi.getProductId(id);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/updateProductId/{id}")
 	public String updateProduct(@PathVariable("id") Integer id,@RequestBody Product product) throws ProductException, CategoryException
 	{
 			psi.updateProduct(id,product);
@@ -55,11 +54,11 @@ public class ProductController  {
 		
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deleteProductId/{id}")
 	public String deleteProductId(@PathVariable("id") Integer id)
 	{
 		psi.deleteProductId(id);
-		return "Delete Product Id Successfully.";
+		return "Delete Product Successfully.";
 	}
 	
 }

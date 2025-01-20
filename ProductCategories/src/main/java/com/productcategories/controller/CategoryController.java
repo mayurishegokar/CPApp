@@ -2,6 +2,7 @@ package com.productcategories.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.productcategories.exception.CategoryException;
 import com.productcategories.model.Category;
-import com.productcategories.request.CategoryRequest;
+
 import com.productcategories.serviceI.CategoryServiceI;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,7 +34,7 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/createCategory")
-	public String createCategory(@RequestBody CategoryRequest category)
+	public String createCategory(@RequestBody Category category)
 	{
 		csi.createCategory(category);
 		return "Create Category Successfully";
@@ -45,16 +47,12 @@ public class CategoryController {
 	}
 	
 	@PutMapping("/updateCategory/{id}")
-	public String updateCategory(@PathVariable("id") Integer id, @RequestBody Category category)
+	public String updateCategory(@PathVariable("id") Integer id, @RequestBody Category category) throws CategoryException
 	{
-		try
-		{
+	
 			csi.updateCategory(id,category);
 			return "Category Update Successfully.";
-		}
-		catch (Exception e) {
-			return e.getMessage();
-		}
+		
 		
 	}
 	

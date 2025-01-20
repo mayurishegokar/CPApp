@@ -35,7 +35,6 @@ public class Category {
 		this.categoryId = categoryId;
 	}
 	
-	
 	public List<Product> getProduct() {
 		return product;
 	}

@@ -1,6 +1,7 @@
 package com.productcategories.serviceImpl;
 
 import java.awt.print.PrinterException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ import com.productcategories.model.Category;
 import com.productcategories.model.Product;
 import com.productcategories.repository.CategoryRepository;
 import com.productcategories.repository.ProductRepository;
-import com.productcategories.request.ProductRequest;
+
 import com.productcategories.serviceI.ProductServiceI;
 @Service
 public class ProductServiceImpl implements ProductServiceI {
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements ProductServiceI {
 	@Override
 	public void createProduct(Product product) throws ProductException {
 		
-		Optional<Category> op=cr.findById(product.getCategory());
+		Optional<Category> op=cr.findById(product.getCategory().getCategoryId());
 		
 		if(!op.isPresent())
 		{
@@ -57,7 +58,7 @@ public class ProductServiceImpl implements ProductServiceI {
 	public void updateProduct(Integer id, Product product) throws ProductException, CategoryException {
 	     Product p=pr.findById(id).orElseThrow(()->new ProductException("Product Id does not match."));
 	     
-	     Optional<Category> op=cr.findById(product.getCategory());
+	     Optional<Category> op=cr.findById(product.getCategory().getCategoryId());
 	     if(!op.isPresent())
 	     {
 	    	 throw new CategoryException("Category Id does not match");
@@ -73,5 +74,6 @@ public class ProductServiceImpl implements ProductServiceI {
 		cr.deleteById(id);
 		
 	}
+	
 
 }
