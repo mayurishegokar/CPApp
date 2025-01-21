@@ -29,10 +29,10 @@ public class ProductController {
 		return psi.getAllProduct();
 	}
 
-	@PostMapping("/createProduct")
-	public String createProduct(@RequestBody Product product) throws ProductException {
+	@PostMapping("/createProduct/{categoryId}")
+	public String createProduct(@RequestBody Product product , @PathVariable("categoryId") int categoryId) throws ProductException {
 
-		psi.createProduct(product);
+		psi.createProduct(product ,categoryId);
 		return "Create Category Successfully";
 
 	}

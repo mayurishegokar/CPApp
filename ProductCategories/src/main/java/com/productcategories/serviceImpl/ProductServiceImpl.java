@@ -33,12 +33,16 @@ public class ProductServiceImpl implements ProductServiceI {
 	}
 
 	@Override
-	public void createProduct(Product product) throws ProductException {
+	public void createProduct(Product product, int categoryId) throws ProductException {
 
-		Optional<Category> op = cr.findById(product.getCategory().getCategoryId());
+	
+		Optional<Category> op = cr.findById(categoryId);
 
-		if (!op.isPresent()) {
+		if (op.isEmpty()) {
 			throw new ProductException("Category Id does not match. ");
+		}
+		else {
+			product.setCategory(op.get());
 		}
 		pr.save(product);
 

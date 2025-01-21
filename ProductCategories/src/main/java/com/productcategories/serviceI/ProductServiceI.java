@@ -10,7 +10,7 @@ public interface ProductServiceI {
 
 	public List<Product> getAllProduct();
 
-	public void createProduct(Product product) throws ProductException;
+	public void createProduct(Product product, int categoryId) throws ProductException;
 
 	public Product getProductId(Integer id);
 

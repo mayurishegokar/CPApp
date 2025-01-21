@@ -14,14 +14,12 @@ import jakarta.persistence.OneToMany;
 public class Category {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer categoryId;
 	private String categoryName;
 	private String categoryDescription;
 	
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-	private List<Product> product=new ArrayList<>();
-	
+
 	
 	public Category()
 	{
@@ -35,12 +33,7 @@ public class Category {
 		this.categoryId = categoryId;
 	}
 	
-	public List<Product> getProduct() {
-		return product;
-	}
-	public void setProduct(List<Product> product) {
-		this.product = product;
-	}
+
 	public String getCategoryName() {
 		return categoryName;
 	}
